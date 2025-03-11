@@ -29,6 +29,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.ui.graphics.Color
@@ -57,13 +58,13 @@ fun LoginScreen() {
     Row(
         verticalAlignment=Alignment.Top,
         modifier=Modifier.width(110.dp)
-            .padding(top=20.dp)
+            .padding(top=26.dp)
     )
     {
         Image(
             painter = painterResource(id = R.drawable.classeta_icon),
             contentDescription = "project icon",
-            modifier = Modifier.size(54.dp)
+            modifier = Modifier.size(55.dp)
 
         )
     }
@@ -145,6 +146,9 @@ fun LoginScreen() {
 
                 Button(
                     onClick = { /*TODO*/ },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xffffd60a)
+                    ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(50.dp),
@@ -185,9 +189,9 @@ fun LoginScreen() {
                         fontSize = 14.sp, color = Color.Gray,
                     )
                     Text(
-                        text = "Log in",
-                        fontSize = 14.sp, color = Color(0xff5e548e),
-//
+                        text = " Log in",
+                        fontSize = 14.sp, color = Color(0xff168aad),
+
                     )
                 }
 
