@@ -41,8 +41,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            LoginScreenTheme {
-            }
+            LoginScreen()
         }
     }
 }
@@ -64,7 +63,7 @@ fun LoginScreen() {
         Image(
             painter = painterResource(id = R.drawable.classeta_icon),
             contentDescription = "project icon",
-//            modifier = Modifier.size(54.dp)
+            modifier = Modifier.size(54.dp)
 
         )
     }
@@ -187,7 +186,7 @@ fun LoginScreen() {
                     )
                     Text(
                         text = "Log in",
-                        fontSize = 14.sp, color = Color(0xFFAD9ACC),
+                        fontSize = 14.sp, color = Color(0xff5e548e),
 //
                     )
                 }
