@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.loginscreen.ui.theme.LoginScreenTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -50,155 +51,145 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 
+
 fun LoginScreen() {
+    var name by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
-        var name by remember { mutableStateOf("") }
-        var email by remember { mutableStateOf("") }
-        var password by remember { mutableStateOf("") }
-    Row(
-        verticalAlignment=Alignment.Top,
-        modifier=Modifier.width(110.dp)
-            .padding(top=26.dp)
-    )
-    {
-        Image(
-            painter = painterResource(id = R.drawable.classeta_icon),
-            contentDescription = "project icon",
-            modifier = Modifier.size(55.dp)
-
-        )
-    }
-
-    Spacer(modifier = Modifier.width(8.dp))
-
-        Box(modifier = Modifier.fillMaxSize()) {
-            Column(
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        item {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.classeta_icon),
+                    contentDescription = "project icon",
+                    modifier = Modifier.size(55.dp)
+                )
+            }
+        }
+        item {
+            Text(
+                text = "Sign up",
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
+        item {
+            Text(
+                text = "Start your 30-day free trial.",
+                fontSize = 16.sp,
+                color = Color.Gray
+            )
+        }
+        item {
+            Text(
+                text = "Name",
+                fontSize = 18.sp,
+                modifier = Modifier.padding(top = 4.dp)
+            )
+            OutlinedTextField(
+                value = name,
+                onValueChange = { name = it },
+                placeholder = { Text("Enter your name", color = Color.Gray) },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
+        item {
+            Text(
+                text = "Email",
+                fontSize = 18.sp,
+                modifier = Modifier.padding(top = 4.dp)
+            )
+            OutlinedTextField(
+                value = email,
+                onValueChange = { email = it },
+                placeholder = { Text("Enter your email", color = Color.Gray) },
+                modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+            )
+        }
+        item {
+            Text(
+                text = "Password",
+                fontSize = 18.sp,
+                modifier = Modifier.padding(top = 4.dp)
+            )
+            OutlinedTextField(
+                value = password,
+                onValueChange = { password = it },
+                placeholder = { Text("Create a password", color = Color.Gray) },
+                modifier = Modifier.fillMaxWidth(),
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+            )
+            Text(
+                text = "Must be at least 8 characters.",
+                fontSize = 12.sp,
+                color = Color.Gray,
+                modifier = Modifier.padding(top = 4.dp)
+            )
+        }
+        item {
+            Button(
+                onClick = { /*TODO*/ },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
-                    .align(Alignment.Center)
-            ) {
-
-
-                Text(
-                    text = "Sign up",
-                    fontSize = 28.sp, fontWeight = FontWeight.Bold
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Text(
-                    text = "Start your 30-day free trial.",
-                    fontSize = 16.sp, color = Color.Gray
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "Name",
-                    fontSize = 18.sp,
-                    modifier = Modifier.padding(top = 4.dp)
-                )
-                OutlinedTextField(
-                    value = name,
-                    onValueChange = { name = it },
-                    placeholder = { Text("Enter your name", color = Color.Gray) },
-                    modifier = Modifier.fillMaxWidth(),
-
-                    )
-
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = "Email",
-                    fontSize = 18.sp,
-                    modifier = Modifier.padding(top = 4.dp)
-                )
-
-                OutlinedTextField(
-                    value = email,
-                    onValueChange = { email = it },
-                    placeholder = { Text("Enter your email", color = Color.Gray) },
-                    modifier = Modifier.fillMaxWidth(),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = "Password",
-                    fontSize = 18.sp,
-                    modifier = Modifier.padding(top = 4.dp)
-                )
-                OutlinedTextField(
-                    value = password,
-                    onValueChange = { password = it },
-                    placeholder = { Text("Create a password", color = Color.Gray) },
-                    modifier = Modifier.fillMaxWidth(),
-                    visualTransformation = PasswordVisualTransformation(),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-                )
-
-                Text(
-                    text = "Must be at least 8 characters.",
-                    fontSize = 12.sp, color = Color.Gray,
-                    modifier = Modifier.padding(top = 4.dp)
-                )
-
-                Spacer(modifier = Modifier.height(24.dp))
-
-                Button(
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(
+                    .height(50.dp),
+                colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xffffd60a)
                     ),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp),
-                    shape = RoundedCornerShape(8.dp)
-                ) {
-                    Text(text = "Get started", fontSize = 16.sp,)
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                OutlinedButton(
-                    onClick = { },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp),
-                    shape = RoundedCornerShape(8.dp),
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.download),
-                            contentDescription = "google icon",
-                            modifier = Modifier.size(24.dp)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(text = "Sign up with Google", fontSize = 16.sp, color = Color.Black)
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Text(text = "Get started",
+                    fontSize = 16.sp,
+                    color=Color.Black
+                    )
+            }
+        }
+        item {
+            OutlinedButton(
+                onClick = { },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                shape = RoundedCornerShape(8.dp),
+            ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically
-                )
-                {
-                    Text(
-                        text = "Already have an account?",
-                        fontSize = 14.sp, color = Color.Gray,
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.download),
+                        contentDescription = "google icon",
+                        modifier = Modifier.size(24.dp)
                     )
-                    Text(
-                        text = " Log in",
-                        fontSize = 14.sp, color = Color(0xff168aad),
-
-                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(text = "Sign up with Google", fontSize = 16.sp, color = Color.Black)
                 }
-
-
             }
-
-
         }
-
+        item {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Already have an account?",
+                    fontSize = 14.sp,
+                    color = Color.Gray,
+                )
+                Text(
+                    text = "Log in",
+                    fontSize = 14.sp,
+                    color = Color(0xFF168aad),
+                )
+            }
+        }
+    }
 }
+
